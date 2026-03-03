@@ -1,0 +1,128 @@
+###
+# get all users
+GET http://localhost:8000/api/users
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI3NDAwZTVkNi05ODA5LTQxMjktOWJlMy1mYzQyMzg2OWMyOTEiLCJyb2xlIjoidXNlciIsImlhdCI6MTc3MTczMzIyOSwiZXhwIjoxNzcxNzM0MTI5fQ.63SNInI3BVu5OaWu0GbeQv6eZIgXGSeL9koyhy5D2Nc
+Cookie: refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI3NDAwZTVkNi05ODA5LTQxMjktOWJlMy1mYzQyMzg2OWMyOTEiLCJlbWFpbCI6ImphbmUuc21pdGhAZXhhbXBsZS5jb20iLCJyb2xlIjoidXNlciIsImlhdCI6MTc3MTczMzIyOSwiZXhwIjoxNzcyMzM4MDI5fQ.GvCeH0vH30EPoNGvO0zpicUvQS8UzfF1OZs7aLCw5og
+###
+# get one user
+GET http://localhost:8000/api/users/c624cc40-81b2-45a2-ab35-8d0682d9835a
+###
+#create user
+POST http://localhost:8000/api/users
+Content-Type: application/json
+
+{
+  "name" : "muham kamar",
+  "email" : "muham.kamar@example.com",
+  "password" : "muham.kamar",
+  "confPassword" : "muham.kamar",
+  "role" : "user"
+}
+
+###
+#create user
+POST http://localhost:8000/api/users
+Content-Type: application/json
+
+{
+  "name" : "wrong user",
+  "email" : "wrong.user@example.com",
+  "password" : "wrong.user",
+  "confPassword" : "wrong.user",
+  "role" : "user"
+}
+
+###
+#update user
+PATCH http://localhost:8000/api/users/787f3e1b-b1b5-400b-8b70-f3d4184a201b
+Content-Type: application/json
+
+{
+  "password" : "nius.sambo",
+  "confPassword" : "nius.sambo"
+}
+
+###
+#create user
+POST http://localhost:8000/api/users
+Content-Type: application/json
+
+{
+  "name" : "delete user",
+  "email" : "delete.user@example.com",
+  "password" : "delete.user",
+  "confPassword" : "delete.user",
+  "role" : "user"
+}
+
+###
+# delete user
+delete http://localhost:8000/api/users/a50aa1cc-aca4-4d9e-a1d7-199ad1691090
+
+###
+# authenticate user
+###
+# login
+###
+# admin login
+POST http://localhost:8000/api/auth/login
+Content-Type: application/json
+
+{
+  "email" : "jhon.doe@example.com",
+  "password" : "jhon.doe"
+}
+
+###
+# user login
+
+POST http://localhost:8000/api/auth/login
+Content-Type: application/json
+
+{
+  "email" : "jane.smith@example.com",
+  "password" : "jane.smith"
+}
+
+###
+# logout
+POST http://localhost:8000/api/auth/logout
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI3NDAwZTVkNi05ODA5LTQxMjktOWJlMy1mYzQyMzg2OWMyOTEiLCJyb2xlIjoidXNlciIsImlhdCI6MTc3MTczMzIyOSwiZXhwIjoxNzcxNzM0MTI5fQ.63SNInI3BVu5OaWu0GbeQv6eZIgXGSeL9koyhy5D2Nc
+Cookie: refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI3NDAwZTVkNi05ODA5LTQxMjktOWJlMy1mYzQyMzg2OWMyOTEiLCJlbWFpbCI6ImphbmUuc21pdGhAZXhhbXBsZS5jb20iLCJyb2xlIjoidXNlciIsImlhdCI6MTc3MTczMzIyOSwiZXhwIjoxNzcyMzM4MDI5fQ.GvCeH0vH30EPoNGvO0zpicUvQS8UzfF1OZs7aLCw5og
+
+
+###
+# wrong login
+POST http://localhost:8000/api/auth/login
+Content-Type: application/json
+
+{
+  "email" : "wrong.email@example.com",
+  "password" : "wrong.password"
+}
+
+###
+# get all products
+#by admin
+GET http://localhost:8000/api/products
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJjNjI0Y2M0MC04MWIyLTQ1YTItYWIzNS04ZDA2ODJkOTgzNWEiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3NzE5ODMyMjIsImV4cCI6MTc3MTk4NDEyMn0.mw35XCihryAHGkvifSL2N_bteQIPXFm3h55YuR39xn0
+Cookie: refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJjNjI0Y2M0MC04MWIyLTQ1YTItYWIzNS04ZDA2ODJkOTgzNWEiLCJlbWFpbCI6Impob24uZG9lQGV4YW1wbGUuY29tIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzcxOTgzMjIyLCJleHAiOjE3NzI1ODgwMjJ9.gykpZ6QbZwtKQyb6igtOpZYlekoa8rUtEh_mZmiZY7g
+###
+# by user
+GET http://localhost:8000/api/products
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI3NDAwZTVkNi05ODA5LTQxMjktOWJlMy1mYzQyMzg2OWMyOTEiLCJyb2xlIjoidXNlciIsImlhdCI6MTc3MTk4MjUyMywiZXhwIjoxNzcxOTgzNDIzfQ.WNcYTZ1ThqcmkIMcCO9IAjVOcOjJ9oU7Cehzr3HFup0
+Cookie: refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI3NDAwZTVkNi05ODA5LTQxMjktOWJlMy1mYzQyMzg2OWMyOTEiLCJlbWFpbCI6ImphbmUuc21pdGhAZXhhbXBsZS5jb20iLCJyb2xlIjoidXNlciIsImlhdCI6MTc3MTk4MjUyMywiZXhwIjoxNzcyNTg3MzIzfQ.qVHbQy7qHryJsD-s35--A2Nf2nAyyu4oRCqHuOqJXfc
+
+###
+#get all orders
+#by admin
+GET http://localhost:8000/api/orders
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJjNjI0Y2M0MC04MWIyLTQ1YTItYWIzNS04ZDA2ODJkOTgzNWEiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3NzE5ODMyMjIsImV4cCI6MTc3MTk4NDEyMn0.mw35XCihryAHGkvifSL2N_bteQIPXFm3h55YuR39xn0
+Cookie: refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJjNjI0Y2M0MC04MWIyLTQ1YTItYWIzNS04ZDA2ODJkOTgzNWEiLCJlbWFpbCI6Impob24uZG9lQGV4YW1wbGUuY29tIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzcxOTgzMjIyLCJleHAiOjE3NzI1ODgwMjJ9.gykpZ6QbZwtKQyb6igtOpZYlekoa8rUtEh_mZmiZY7g
+
+
+###
+#by user
+GET http://localhost:8000/api/orders
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI3NDAwZTVkNi05ODA5LTQxMjktOWJlMy1mYzQyMzg2OWMyOTEiLCJyb2xlIjoidXNlciIsImlhdCI6MTc3MTk4MjUyMywiZXhwIjoxNzcxOTgzNDIzfQ.WNcYTZ1ThqcmkIMcCO9IAjVOcOjJ9oU7Cehzr3HFup0
+Cookie: refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI3NDAwZTVkNi05ODA5LTQxMjktOWJlMy1mYzQyMzg2OWMyOTEiLCJlbWFpbCI6ImphbmUuc21pdGhAZXhhbXBsZS5jb20iLCJyb2xlIjoidXNlciIsImlhdCI6MTc3MTk4MjUyMywiZXhwIjoxNzcyNTg3MzIzfQ.qVHbQy7qHryJsD-s35--A2Nf2nAyyu4oRCqHuOqJXfc
