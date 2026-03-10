@@ -8,6 +8,7 @@ import DashboardView from "./views/dashboard/dashboard.view";
 import UserView from "./views/dashboard/user.view";
 import ProductView from "./views/dashboard/product.view";
 import OrderView from "./views/dashboard/order.view";
+import SearchView from "./views/dashboard/search.view";
 
 export default function App() {
   return (
@@ -20,6 +21,7 @@ export default function App() {
         </Route>
         <Route path="/dashboard" element={<DashboardPage />}>
           <Route index element={<DashboardView />} />
+          <Route path="search" element={<SearchView />} />
           <Route path="user" element={<UserView />} />
           <Route path="product" element={<ProductView />} />
           <Route path="order" element={<OrderView />} />
