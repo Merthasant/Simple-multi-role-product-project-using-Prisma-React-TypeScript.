@@ -1,14 +1,11 @@
 import { useState } from "react";
 import { FormField } from "../../molecules";
 import { Button } from "../../atoms";
+import { Link } from "react-router-dom";
+import type { RegisterInputDataType } from "../../../lib";
 
 interface RegisterFormProps {
-  onSubmit?: (data: {
-    name: string;
-    email: string;
-    password: string;
-    confirmPassword: string;
-  }) => void;
+  onSubmit?: (data: RegisterInputDataType) => void;
   isLoading?: boolean;
 }
 
@@ -19,11 +16,11 @@ export default function RegisterForm({
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
+  const [confPassword, setConfPassword] = useState("");
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    onSubmit?.({ name, email, password, confirmPassword });
+    onSubmit?.({ name, email, password, confPassword, role: "user" });
   };
 
   return (
@@ -65,8 +62,8 @@ export default function RegisterForm({
           label="Confirm Password"
           type="password"
           placeholder="Confirm your password"
-          value={confirmPassword}
-          onChange={(e) => setConfirmPassword(e.target.value)}
+          value={confPassword}
+          onChange={(e) => setConfPassword(e.target.value)}
           required
           variant="default"
         />
@@ -78,9 +75,9 @@ export default function RegisterForm({
 
       <p className="text-center mt-4 text-sm">
         Already have an account?{" "}
-        <a href="/auth/sign-in" className="text-primary hover:underline">
+        <Link to="/sign-in" className="text-primary hover:underline">
           Sign In
-        </a>
+        </Link>
       </p>
     </div>
   );

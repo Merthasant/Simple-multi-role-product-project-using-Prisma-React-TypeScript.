@@ -1,38 +1,42 @@
-import type { RegisterDataType } from "../../types/auth.type";
+import type {
+  AuthOutputDataType,
+  RegisterInputDataType,
+  LoginInputDataType,
+} from "../../types/auth.type";
 import type { ResponseType } from "../../types/response.type";
 import type { UserOutput } from "../../types/user.type";
 import axiosInstance from "./axios";
 
 export const login = async (
-  email: string,
-  password: string,
-): Promise<ResponseType<UserOutput>> => {
-  const response = await axiosInstance.post<ResponseType<UserOutput>>(
+  data: LoginInputDataType,
+): Promise<ResponseType<AuthOutputDataType>> => {
+  const response = await axiosInstance.post<ResponseType<AuthOutputDataType>>(
     "/auth/login",
-    {
-      email,
-      password,
-    },
+    data,
   );
-
+  const token = response.data.payload?.token.accessToken;
+  if (!token) throw new Error("token is required");
+  localStorage.setItem("token", token);
   return response.data;
 };
 
 export const register = async (
-  data: RegisterDataType,
-): Promise<ResponseType<UserOutput>> => {
-  const response = await axiosInstance.post<ResponseType<UserOutput>>(
+  data: RegisterInputDataType,
+): Promise<ResponseType<AuthOutputDataType>> => {
+  const response = await axiosInstance.post<ResponseType<AuthOutputDataType>>(
     "/auth/register",
     data,
   );
-
+  const token = response.data.payload?.token.accessToken;
+  if (!token) throw new Error("token is required");
+  localStorage.setItem("token", token);
   return response.data;
 };
 
 export const logout = async (): Promise<ResponseType<undefined>> => {
   const response =
-    await axiosInstance.delete<ResponseType<undefined>>("/auth/logout");
-
+    await axiosInstance.post<ResponseType<undefined>>("/auth/logout");
+  localStorage.removeItem("token");
   return response.data;
 };
 

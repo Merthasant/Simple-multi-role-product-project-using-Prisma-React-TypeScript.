@@ -1,23 +1,29 @@
+import { Link } from "react-router-dom";
 import { Navbar, Button } from "../components";
+import { useAppSelector } from "../store/hook";
 
 export default function HomePage() {
+  const { isSuccess } = useAppSelector((state) => state.auth);
+
   return (
     <div className="min-h-screen bg-gray-50">
       <Navbar
         title="Product App"
         rightContent={
-          <div className="flex items-center space-x-4">
-            <a href="/auth/sign-in">
-              <Button variant="primary" size="md">
-                Sign In
-              </Button>
-            </a>
-            <a href="/auth/register">
-              <Button variant="success" size="md">
-                Register
-              </Button>
-            </a>
-          </div>
+          !isSuccess && (
+            <div className="flex items-center space-x-4">
+              <Link to={"/sign-in"}>
+                <Button variant="primary" size="md">
+                  Sign In
+                </Button>
+              </Link>
+              <Link to={"/sign-up"}>
+                <Button variant="success" size="md">
+                  Register
+                </Button>
+              </Link>
+            </div>
+          )
         }
       />
 
@@ -28,11 +34,11 @@ export default function HomePage() {
             Manage your products and orders easily
           </p>
           <div className="flex justify-center space-x-4">
-            <a href="/auth/sign-in">
+            <Link to="/sign-in">
               <Button variant="primary" size="lg">
                 Get Started
               </Button>
-            </a>
+            </Link>
           </div>
         </div>
       </div>

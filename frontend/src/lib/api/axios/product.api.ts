@@ -4,7 +4,7 @@ import type {
   ProductOutput,
   ProductUpdateInput,
 } from "../../types/product.type";
-import type { ResponseType } from "../../types/response.type";
+import type { AddMetaData, ResponseType } from "../../types/response.type";
 import axiosInstance from "./axios";
 
 // C
@@ -25,12 +25,11 @@ export const getAllProducts = async (options: OptionParams) => {
     sortBy = "createdAt",
     sortOrder = "asc",
   } = options;
-  const response = await axiosInstance.get<ResponseType<ProductOutput[]>>(
-    "/products",
-    {
-      params: { page, limit, search, sortBy, sortOrder },
-    },
-  );
+  const response = await axiosInstance.get<
+    ResponseType<AddMetaData<ProductOutput[]>>
+  >("/products", {
+    params: { page, limit, search, sortBy, sortOrder },
+  });
   return response.data;
 };
 

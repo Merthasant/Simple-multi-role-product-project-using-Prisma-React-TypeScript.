@@ -1,17 +1,25 @@
 import { Outlet } from "react-router-dom";
 import { Navbar, NavCard, Card, Button } from "../components";
+import { useAppDispatch, useAppSelector } from "../store/hook";
+import { logoutThunk } from "../store/features/auth.features";
 
 export default function DashboardPage() {
+  const dispatch = useAppDispatch();
+
+  const role = useAppSelector((state) => state.auth.data?.role);
+
+  const logoutClick = () => {
+    dispatch(logoutThunk());
+  };
+
   return (
     <div className="min-h-screen bg-gray-50">
       <Navbar
         title="Dashboard"
         rightContent={
-          <a href="/">
-            <Button variant="primary" size="md">
-              Logout
-            </Button>
-          </a>
+          <Button variant="primary" size="md" onClick={logoutClick}>
+            Logout
+          </Button>
         }
       />
 
@@ -23,14 +31,16 @@ export default function DashboardPage() {
             title="Search"
             description="Search Product"
           />
-          <NavCard
-            to="/dashboard/user"
-            title="Users"
-            description="Manage users"
-          />
+          {role === "admin" && (
+            <NavCard
+              to="/dashboard/user"
+              title="Users"
+              description="Manage users"
+            />
+          )}
           <NavCard
             to="/dashboard/product"
-            title="Products"
+            title="My Products"
             description="Manage products"
           />
           <NavCard

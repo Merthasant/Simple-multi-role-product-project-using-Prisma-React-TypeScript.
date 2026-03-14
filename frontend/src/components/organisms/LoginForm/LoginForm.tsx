@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { FormField } from "../../molecules";
 import { Button } from "../../atoms";
+import { Link } from "react-router-dom";
 
 interface LoginFormProps {
   onSubmit?: (data: { email: string; password: string }) => void;
@@ -51,9 +52,9 @@ export default function LoginForm({
 
       <p className="text-center mt-4 text-sm">
         Don't have an account?{" "}
-        <a href="/auth/register" className="text-primary hover:underline">
+        <Link to="/sign-up" className="text-primary hover:underline">
           Register
-        </a>
+        </Link>
       </p>
     </div>
   );

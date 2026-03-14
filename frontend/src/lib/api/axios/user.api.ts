@@ -1,5 +1,5 @@
 import type { OptionParams } from "../../types/option.type";
-import type { ResponseType } from "../../types/response.type";
+import type { AddMetaData, ResponseType } from "../../types/response.type";
 import type {
   UserInput,
   UserOutput,
@@ -26,10 +26,9 @@ export const getAllUsers = async (options: OptionParams) => {
     sortOrder = "asc",
   } = options;
 
-  const response = await axiosInstance.get<ResponseType<UserOutput[]>>(
-    "/users",
-    { params: { page, limit, search, sortBy, sortOrder } },
-  );
+  const response = await axiosInstance.get<
+    ResponseType<AddMetaData<UserOutput[]>>
+  >("/users", { params: { page, limit, search, sortBy, sortOrder } });
   return response.data;
 };
 

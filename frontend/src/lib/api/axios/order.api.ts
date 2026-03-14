@@ -5,7 +5,7 @@ import type {
   OrderUpdateInput,
 } from "../../types/order.type";
 
-import type { ResponseType } from "../../types/response.type";
+import type { AddMetaData, ResponseType } from "../../types/response.type";
 import axiosInstance from "./axios";
 
 // C
@@ -26,12 +26,11 @@ export const getAllOrders = async (options: OptionParams) => {
     sortBy = "createdAt",
     sortOrder = "asc",
   } = options;
-  const response = await axiosInstance.get<ResponseType<OrderOutput[]>>(
-    "/orders",
-    {
-      params: { page, limit, search, sortBy, sortOrder },
-    },
-  );
+  const response = await axiosInstance.get<
+    ResponseType<AddMetaData<OrderOutput[]>>
+  >("/orders", {
+    params: { page, limit, search, sortBy, sortOrder },
+  });
   return response.data;
 };
 
